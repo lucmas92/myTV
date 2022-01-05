@@ -96,7 +96,7 @@ export default {
         this.canali = JSON.parse(canali)
         this.stasera = JSON.parse(stasera)
       } else {
-        const url = "https://epgnew.guidatvoggi.it/1";
+        const url = "https://epgnew.guidatvoggi.it/0";
         const requestOptions = {
           method: 'POST',
           headers: this.headers

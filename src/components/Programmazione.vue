@@ -50,7 +50,7 @@ export default {
       if (channels != null) {
         this.channels = JSON.parse(channels)
       } else {
-        const url = "https://epgnew.guidatvoggi.it/1";
+        const url = "https://epgnew.guidatvoggi.it/0";
         let requestOptions = {
           method: 'POST',
           headers: this.headers
