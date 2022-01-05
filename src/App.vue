@@ -5,6 +5,7 @@
       <router-link to="/">
         <h1 class="text-md w-24 ml-5 md:w-36 font-bold text-center"><span class="hidden lg:inline">
           Stasera </span>MyTV
+      <button @click="clearStorage">clear</button>
         </h1>
       </router-link>
       <div class="w-full">
@@ -29,5 +30,13 @@ import BackButton from "@/components/BackButton";
 export default {
   name: 'App',
   components: {BackButton},
+  methods:{
+    clearStorage(){
+      const key = 'canali_' + this.current_date;
+      const key2 = 'stasera_' + this.current_date;
+      localStorage.removeItem(key)
+      localStorage.removeItem(key2)
+    }
+  }
 }
 </script>
