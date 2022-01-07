@@ -33,7 +33,7 @@
                 {{ channel['prog']['title'] }}
               </h5>
               <p class="mb-5 text-gray-800">
-                {{ channel['prog']['description'] }}
+                {{ channel['prog']['description'] | truncate(300) }}
               </p>
               <div class="flex items-center">
                 <router-link :to="'/channel/'+index"
