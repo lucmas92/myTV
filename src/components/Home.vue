@@ -3,7 +3,7 @@
     <div class="flex flex-row w-full overflow-auto overflow-x-scroll" v-if="canali">
       <section class="w-full bg-gray-800 py-4 channels" v-for="(canale) in canali" :key="canale['canale']['number']">
         <div class="w-24 lg:w-36 xl:w-40 flex flex-col justify-center items-center border-black">
-          <img :src="'https://loghi.guidatvoggi.it/w/' + canale['canale']['logo']" class="h-8 mb-3" alt="">
+          <img :src="'/img/loghi/' + canale['canale']['logo']" class="h-8 mb-3" alt="">
         </div>
       </section>
     </div>
@@ -24,7 +24,7 @@
             <div class="flex flex-col justify-center p-8 bg-gray-200 lg:p-16 lg:pl-10 lg:w-1/2">
               <div>
                 <p class="inline-block py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                  <img :src="'https://loghi.guidatvoggi.it/b/' + channel['canale']['logo']" class="h-8 mb-3" alt="">
+                  <img :src="'/img/loghi/' + channel['canale']['logo']" class="h-8 mb-3" alt="">
 
                   {{ getStartTime(channel['prog']['inizio']) }} - {{ getStartTime(channel['prog']['fine']) }}
                 </p>

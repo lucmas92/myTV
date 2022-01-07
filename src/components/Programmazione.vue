@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 py-4" v-if="channels">
       <section class="channel" v-for="(channel) in channels" :key="channel['canale']['numero']">
         <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
-          <img :src="'https://loghi.guidatvoggi.it/b/' + channel['canale']['logo']" class="h-8 mb-3" alt="">
+          <img :src="'/img/loghi/' + channel['canale']['logo']" class="h-8 mb-3" alt="">
           <div class="relative bg-gray-300 shadow-md rounded-lg hover:shadow-xl">
             <div class="flex flex-row">
               <section class="h-96 overflow-auto">
