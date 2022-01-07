@@ -8,7 +8,7 @@
       </section>
     </div>
     <div class="flex flex-col gap-6" v-if="stasera">
-      <pagination  @page_changed="load" :n_elements="total_elements"></pagination>
+      <pagination @page_changed="load" :n_elements="total_elements"></pagination>
       <section class="channel" v-for="(channel,index) in stasera" :key="channel['canale']['number']">
         <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
           <div
@@ -36,7 +36,7 @@
                 {{ channel['prog']['description'] | truncate(300) }}
               </p>
               <div class="flex items-center">
-                <router-link :to="'/channel/'+index"
+                <router-link :to="'/channel/'+(parseInt(index) + parseInt(10*(page-1)))"
                              class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-black bg-indigo-200 transition duration-200 rounded shadow-md focus:shadow-outline focus:outline-none"
                 >
                   Read more
@@ -56,7 +56,7 @@
         </div>
 
       </section>
-      <pagination v-if="stasera.length > 3"  @page_changed="load" :n_elements="total_elements"></pagination>
+      <pagination v-if="stasera.length > 3" @page_changed="load" :n_elements="total_elements"></pagination>
     </div>
 
 
@@ -75,10 +75,16 @@ export default {
       stasera: [],
       current_date: null,
       total_elements: 1,
+      page: null
+    }
+  },
+  updated(){
+    this.page = localStorage.getItem('current_page');
+    if (this.page == null) {
+      this.page = 1;
     }
   },
   beforeMount() {
-    this.page = localStorage.getItem('page');
     this.load();
   },
   methods: {

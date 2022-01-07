@@ -26,7 +26,7 @@
       <img alt="content" class="object-cover object-center h-full w-full" :src="channel['prog']['image']">
     </div>
     <div>
-      <div class="space-y-2" v-if="channel['prog']['actor']">
+      <div class="space-y-2 text-gray-300" v-if="channel['prog']['actor']">
         <h4 class="text-lg font-semibold">Attori</h4>
         <ul class="ml-4 space-y-1 list-disc">
           <li v-for="(actor,index) in channel['prog']['actor'].split(', ')" :key="index">
