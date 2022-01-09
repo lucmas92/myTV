@@ -1,11 +1,11 @@
 <template>
-  <div id="app" class="bg-gray-800 min-h-screen">
+  <div id="app" class="bg-gray-700 min-h-screen">
     <div class="fixed w-full z-20 flex flex-row items-center px-4 py-4 shadow-lg bg-indigo-900 text-white">
       <back-button></back-button>
       <router-link to="/">
         <h1 class="text-md w-24 ml-5 md:w-36 font-bold text-center"><span class="hidden lg:inline">
           Stasera </span>MyTV
-<!--      <button @click="clearStorage">clear</button>-->
+          <!--      <button @click="clearStorage">clear</button>-->
         </h1>
       </router-link>
       <div class="w-full">
@@ -19,19 +19,20 @@
         </router-link>
       </div>
     </div>
-
-    <router-view class="pt-14"></router-view>
+    <channels-list class="pt-14"></channels-list>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import BackButton from "@/components/BackButton";
+import ChannelsList from "@/components/ChannelsList";
 
 export default {
   name: 'App',
-  components: {BackButton},
-  methods:{
-    clearStorage(){
+  components: {ChannelsList, BackButton},
+  methods: {
+    clearStorage() {
       const key = 'canali_' + this.current_date;
       const key2 = 'prima_serata_' + this.current_date;
       localStorage.removeItem(key)

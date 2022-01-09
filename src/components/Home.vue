@@ -1,20 +1,11 @@
 <template>
   <div>
-    <div class="flex flex-row w-full overflow-auto overflow-x-scroll" v-if="canali">
-      <section class="w-full bg-gray-800 py-4 channels" v-for="(canale,index) in canali" :key="canale['canale']['number']">
-        <div class="w-24 lg:w-36 xl:w-40 flex flex-col justify-center items-center border-black">
-          <router-link :to="'/channel2/'+(parseInt(index) + parseInt(10*(page-1)))">
-            <img :src="'/img/loghi/' + canale['canale']['logo']" class="h-8 mb-3" :alt="canale['canale']['name']">
-          </router-link>
-        </div>
-      </section>
-    </div>
     <div class="flex flex-col gap-6" v-if="stasera">
-      <pagination @page_changed="load" :n_elements="total_elements"></pagination>
+<!--      <pagination @page_changed="load" :n_elements="total_elements"></pagination>-->
       <section class="channel" v-for="(channel,index) in stasera" :key="channel['canale']['number']">
-        <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
+        <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-2 lg:py-5">
           <div
-              class="flex flex-col max-w-screen-lg overflow-hidden bg-gray-200 border rounded shadow-sm lg:flex-row sm:mx-auto">
+              class="flex flex-col overflow-hidden bg-gray-200 border rounded shadow-sm lg:flex-row sm:mx-auto">
             <div class="relative lg:w-1/2">
               <!--        <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" class="object-cover w-full lg:absolute h-80 lg:h-full" />-->
               <img :src="channel['prog']['image']" alt="" class="object-cover w-full lg:absolute h-80 lg:h-full"/>
@@ -70,7 +61,7 @@ import Pagination from "@/components/Pagination";
 
 export default {
   name: 'Home',
-  components: {Pagination},
+  components: { Pagination},
   data: function () {
     return {
       canali: [],

@@ -19,6 +19,17 @@ Vue.mixin({
             },
             get headers() {
                 return {epgguidatv: 'gu1d4tv53gr3t4'};
+            },
+            get key1(){
+                return 'canali_' + this.current_date;
+                // const key2 = 'prima_serata_' + this.current_date;
+                // const key3 = 'seconda_serata_' + this.current_date;
+            },
+            get key2(){
+                return 'prima_serata_' + this.current_date;
+            },
+            get key3(){
+                return 'seconda_serata_' + this.current_date;
             }
         }
     },

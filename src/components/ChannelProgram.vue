@@ -1,13 +1,13 @@
 <template>
-  <div class="px-6 mx-auto space-y-12 pb-12" v-if="channel">
-    <div class="flex flex-col lg:flex-row pt-6 text-gray-700 justify-center items-start">
+  <div class="px-6 mx-auto" v-if="channel">
+    <div class="flex flex-col lg:flex-row text-gray-700 justify-center items-start">
       <div class="w-full lg:w-1/2 text-center">
         <div v-if="prima_serata">
-          <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
+          <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-2 lg:py-5">
             <div
                 class="flex flex-col max-w-screen-lg overflow-hidden bg-gray-200 border rounded shadow-sm lg:flex-row sm:mx-auto">
-              <div class="relative lg:w-1/2">
-                <img :src="prima_serata['prog']['image']" alt="" class="object-cover w-full lg:absolute h-64 lg:h-80 lg:h-full"/>
+              <div class="relative h-64 lg:h-72 xl:h-96 lg:w-1/2">
+                <img :src="prima_serata['prog']['image']" alt="" class="object-cover w-full lg:absolute h-full"/>
                 <svg class="absolute top-0 right-0 hidden h-full text-gray-200 lg:inline-block" viewBox="0 0 20 104"
                      fill="currentColor">
                   <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104"></polygon>
@@ -15,6 +15,7 @@
               </div>
               <div class="flex flex-col justify-center p-1 bg-gray-200 lg:p-2 lg:pl-5 lg:w-2/3">
                 <div>
+                  <h4 class="text-4xl uppercase">Prima Serata</h4>
                   <p class="inline-block py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                     {{ getStartTime(prima_serata['prog']['inizio']) }} - {{ getStartTime(prima_serata['prog']['fine']) }}
                   </p>
@@ -43,11 +44,11 @@
       </div>
       <div class="w-full lg:w-1/2 w-1/2 text-center">
         <div v-if="seconda_serata">
-          <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
+          <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-2 lg:py-5">
             <div
                 class="flex flex-col max-w-screen-lg overflow-hidden bg-gray-200 border rounded shadow-sm lg:flex-row sm:mx-auto">
-              <div class="relative lg:w-1/2">
-                <img :src="seconda_serata['prog']['image']" alt="" class="object-cover w-full lg:absolute h-64 lg:h-80 lg:h-full"/>
+              <div class="relative h-64 lg:h-72 xl:h-96 lg:w-1/2">
+                <img :src="seconda_serata['prog']['image']" alt="" class="object-cover w-full lg:absolute h-full"/>
                 <svg class="absolute top-0 right-0 hidden h-full text-gray-200 lg:inline-block" viewBox="0 0 20 104"
                      fill="currentColor">
                   <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104"></polygon>
@@ -55,6 +56,7 @@
               </div>
               <div class="flex flex-col justify-center p-1 bg-gray-200 lg:p-2 lg:pl-5 lg:w-2/3">
                 <div>
+                  <h4 class="text-4xl uppercase">Seconda Serata</h4>
                   <p class="inline-block py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                     {{ getStartTime(seconda_serata['prog']['inizio']) }} - {{ getStartTime(seconda_serata['prog']['fine']) }}
                   </p>
@@ -82,12 +84,12 @@
         </div>
       </div>
     </div>
-    <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
+    <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-2 lg:py-5">
       <img :src="'/img/loghi/' + channel['canale']['logo']" class="h-8 mb-3" alt="">
-      <div class="relative bg-gray-300 shadow-md rounded-lg hover:shadow-xl">
+      <div class="relative bg-gray-200 shadow-md rounded-lg hover:shadow-xl">
         <div class="flex flex-row">
           <section>
-            <div class="flex flex-col items-start px-4 py-2">
+            <div class="flex flex-col items-start px-4 py-5 space-y-4">
               <div class="flex w-full flex-row" v-for="(prog,index) in channel['prog']" :key="index">
                 <div class="w-2/6 md:w-1/6 text-xs md:text-sm text-right pr-4">
                   {{ getStartTime(prog['inizio']) }} -
@@ -135,7 +137,6 @@ export default {
       let channels = localStorage.getItem(key);
       let prima_serata = localStorage.getItem(key2);
       let seconda_serata = localStorage.getItem(key3);
-      console.log(seconda_serata)
       if (channels != null) {
         channels = JSON.parse(channels);
         this.channel = channels[this.number]
@@ -146,7 +147,6 @@ export default {
       }
       if (seconda_serata != null) {
         seconda_serata = JSON.parse(seconda_serata);
-        console.log(seconda_serata[this.number]['prog']);
         this.seconda_serata = seconda_serata[this.number]
       }
     }
