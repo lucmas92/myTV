@@ -5,15 +5,18 @@
       <div class="space-y-6">
         <h1 class="text-4xl font-bold md:tracking-tight md:text-5xl">{{ channel['prog']['title'] }}</h1>
         <div
-            class="bg-gray-200 py-1 text-black flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
+            class="bg-gray-200 px-4 py-1 text-black flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
           <div class="flex items-center md:space-x-2">
             <img src="/watch.png" alt=""
                  class="w-4 h-4 border rounded-full dark:bg-gray-700 dark:border-gray-700">
-            <p class="text-sm">{{ getStartTime(channel['prog']['inizio']) }} • {{
-                getStartTime(channel['prog']['fine'])
-              }}</p>
+            <p class="text-sm">
+              {{ getStartTime(channel['prog']['inizio']) }}
+              •
+              {{ getStartTime(channel['prog']['fine']) }}
+              ({{ channel['prog']['durata'] }} min)
+            </p>
           </div>
-          <div class="mt-3 text-sm md:mt-0">{{ channel['prog']['durata'] }} min •
+          <div class="mt-3 text-sm md:mt-0">
             {{ channel['prog']['genre'] }} • {{ channel['prog']['category'] }}
           </div>
         </div>
@@ -24,8 +27,8 @@
         </p>
       </div>
     </article>
-    <div class="rounded-lg h-64 overflow-hidden">
-      <img alt="content" class="object-cover object-center h-full w-full" :src="channel['prog']['image']">
+    <div class="rounded-lg aspect-w-16 aspect-h-9 lg:aspect-none">
+      <img alt="content" class="w-full h-full object-center object-cover lg:w-full lg:h-full" :src="channel['prog']['image']">
     </div>
     <div>
       <div class="space-y-2 text-gray-300" v-if="channel['prog']['actor']">

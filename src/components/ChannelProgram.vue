@@ -123,10 +123,8 @@ export default {
       seconda_serata: null
     }
   },
-  beforeMount() {
-    this.number = this.$route.params.number;
-  },
   mounted() {
+    this.number = this.$route.params.number;
     this.loadChannel();
   },
   methods: {

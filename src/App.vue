@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-700 min-h-screen">
+  <div id="app" class="bg-gray-600 min-h-screen">
     <div class="fixed w-full z-20 flex flex-row items-center px-4 py-4 shadow-lg bg-indigo-900 text-white">
       <back-button></back-button>
       <router-link to="/">
@@ -20,7 +20,7 @@
       </div>
     </div>
     <channels-list class="pt-14"></channels-list>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 

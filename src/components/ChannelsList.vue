@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row w-full overflow-auto overflow-x-scroll" v-if="channels">
-    <section class="w-full bg-gray-700 py-4 channels" v-for="(channel,index) in channels"
+    <section class="w-full py-4 channels" v-for="(channel,index) in channels"
              :key="channel['canale']['logo']">
       <div class="w-24 lg:w-36 xl:w-40 flex flex-col justify-center items-center border-black">
         <router-link :to="'/channel2/'+ index">
