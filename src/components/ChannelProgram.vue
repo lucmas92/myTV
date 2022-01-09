@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="w-1/2 text-center">
+      <div class="w-full lg:w-1/2 w-1/2 text-center">
         <div v-if="seconda_serata">
           <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 py-5 lg:py-10">
             <div
