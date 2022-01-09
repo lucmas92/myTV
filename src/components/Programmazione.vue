@@ -9,16 +9,16 @@
               <section class="h-96 overflow-auto">
                 <div class="flex flex-col items-start px-4 py-2">
                   <div class="flex w-full flex-row" v-for="(prog,index) in channel['prog']" :key="index">
-                    <div class="w-2/6 md:w-1/6 text-xs md:text-base text-right pr-4">
+                    <div class="w-2/6 md:w-1/6 text-xs md:text-sm text-right pr-4">
                       {{ getStartTime(prog['inizio']) }} -
                       {{ getStartTime(prog['fine']) }}
                     </div>
                     <div class="w-4/6 md:w-5/6 flex flex-col">
-                      <h2 class="text-lg lg:text-xl">
+                      <h2 class="text-lg font-bold lg:text-xl">
                         {{ prog['title'] }}
                         <span class="text-sm">({{ prog['category'] }} - {{ prog['genre'] }})</span>
                       </h2>
-                      <p class="text-xs lg:text-sm py-4">{{ prog['description'] | truncate(400, '...') }}</p>
+                      <p class="text-xs lg:text-sm text-gray-500 py-4">{{ prog['description'] | truncate(400, '...') }}</p>
                     </div>
                   </div>
                 </div>

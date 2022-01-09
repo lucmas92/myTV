@@ -33,7 +33,7 @@ export default {
   methods:{
     clearStorage(){
       const key = 'canali_' + this.current_date;
-      const key2 = 'stasera_' + this.current_date;
+      const key2 = 'prima_serata_' + this.current_date;
       localStorage.removeItem(key)
       localStorage.removeItem(key2)
     }

@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     loadChannel() {
-      const key = 'stasera_' + this.current_date;
+      const key = 'prima_serata_' + this.current_date;
       let channels = localStorage.getItem(key);
       if (channels != null) {
         channels = JSON.parse(channels);

@@ -1,9 +1,11 @@
 <template>
   <div>
     <div class="flex flex-row w-full overflow-auto overflow-x-scroll" v-if="canali">
-      <section class="w-full bg-gray-800 py-4 channels" v-for="(canale) in canali" :key="canale['canale']['number']">
+      <section class="w-full bg-gray-800 py-4 channels" v-for="(canale,index) in canali" :key="canale['canale']['number']">
         <div class="w-24 lg:w-36 xl:w-40 flex flex-col justify-center items-center border-black">
-          <img :src="'/img/loghi/' + canale['canale']['logo']" class="h-8 mb-3" alt="">
+          <router-link :to="'/channel2/'+(parseInt(index) + parseInt(10*(page-1)))">
+            <img :src="'/img/loghi/' + canale['canale']['logo']" class="h-8 mb-3" :alt="canale['canale']['name']">
+          </router-link>
         </div>
       </section>
     </div>
@@ -78,7 +80,7 @@ export default {
       page: null
     }
   },
-  updated(){
+  updated() {
     this.page = localStorage.getItem('current_page');
     if (this.page == null) {
       this.page = 1;
@@ -94,7 +96,8 @@ export default {
       this.current_date = `${current.getDate()}-${current.getMonth() + 1}-${current.getFullYear()}`;
 
       const key = 'canali_' + this.current_date;
-      const key2 = 'stasera_' + this.current_date;
+      const key2 = 'prima_serata_' + this.current_date;
+      const key3 = 'seconda_serata_' + this.current_date;
 
       let canali = localStorage.getItem(key);
       let stasera = localStorage.getItem(key2);
@@ -114,6 +117,8 @@ export default {
               localStorage.setItem(key, JSON.stringify(this.canali));
               this.stasera = data['stasera'][0]['canali']
               localStorage.setItem(key2, JSON.stringify(this.stasera));
+              let seconda_serata = data['seconda-serata'][0]['canali']
+              localStorage.setItem(key3, JSON.stringify(seconda_serata));
             });
       }
 

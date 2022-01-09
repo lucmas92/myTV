@@ -32,7 +32,7 @@ export default {
       max_page: null
     }
   },
-  beforeMount() {
+  created() {
     this.max_page = Math.ceil(this.n_elements / 10);
     let page = localStorage.getItem('current_page');
     if (page == null) {

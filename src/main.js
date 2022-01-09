@@ -5,6 +5,7 @@ import './assets/tailwind.css'
 import Home from "@/components/Home";
 import ChannelDetail from "@/components/ChannelDetail";
 import Programmazione from "@/components/Programmazione";
+import ChannelProgram from "@/components/ChannelProgram";
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -33,6 +34,7 @@ const routes = [
     {path: '/', component: Home},
     {path: '/programmazione', component: Programmazione},
     {path: '/channel/:number', component: ChannelDetail},
+    {path: '/channel2/:number', component: ChannelProgram},
 ]
 
 let filter = function (text, length, clamp) {
