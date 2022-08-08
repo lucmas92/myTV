@@ -4,8 +4,6 @@ import VueRouter from 'vue-router'
 import './assets/tailwind.css'
 import Home from "@/components/Home";
 import ChannelDetail from "@/components/ChannelDetail";
-import Programmazione from "@/components/Programmazione";
-import ChannelProgram from "@/components/ChannelProgram";
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -13,39 +11,84 @@ Vue.config.productionTip = false
 Vue.mixin({
     data: function () {
         return {
-            get current_date() {
-                const current = new Date();
-                return `${current.getDate()}-${current.getMonth() + 1}-${current.getFullYear()}`;
-            },
-            get headers() {
-                return {epgguidatv: 'gu1d4tv53gr3t4'};
-            },
-            get key1(){
-                return 'canali_' + this.current_date;
-                // const key2 = 'prima_serata_' + this.current_date;
-                // const key3 = 'seconda_serata_' + this.current_date;
-            },
-            get key2(){
-                return 'prima_serata_' + this.current_date;
-            },
-            get key3(){
-                return 'seconda_serata_' + this.current_date;
-            }
+            'key': 'programmiTV',
         }
     },
     methods: {
+        /**
+         * Metodo che ritorna l'ora di inizio e fine di un programma
+         * @param time
+         * @returns {string}
+         */
         getStartTime(time) {
             let d = new Date(time);
-            return `${("0" + (d.getHours() )).slice(-2)}:${("0" + (d.getMinutes() + 1)).slice(-2)}`;
+            return `${("0" + (d.getHours())).slice(-2)}:${("0" + (d.getMinutes() + 1)).slice(-2)}`;
         },
+        current_date() {
+            const current = new Date();
+            return `${current.getDate()}-${current.getMonth() + 1}-${current.getFullYear()}`;
+        },
+        headers() {
+            return {epgguidatv: 'gu1d4tv53gr3t4'};
+        },
+        async getCanali() {
+            let data = await this.getData();
+            return data['canali'];
+        },
+        async getStasera() {
+            let data = await this.getData();
+            return data['stasera'];
+        },
+        async setCacheDataFromApi() {
+            const url = "https://epgnew.guidatvoggi.it/0";
+            const requestOptions = {
+                method: 'POST',
+                headers: this.headers()
+            };
+            let response = await fetch(url, requestOptions);
+
+            let data = await response.json();
+
+            let today = new Date().getDate()
+            let json_data = {
+                [today]: {
+                    'canali': data['canali'][0]['canali'],
+                    'stasera': data['stasera'][0]['canali'],
+                    'seconda_serata': data['seconda-serata'][0]['canali']
+                }
+            };
+            localStorage.setItem(this.key, JSON.stringify(json_data));
+        },
+        async resetCacheDataFromApi() {
+            // localStorage.removeItem(this.key);
+            await this.setCacheDataFromApi();
+        },
+        async getData() {
+            let data = JSON.parse(localStorage.getItem(this.key));
+            let today = new Date().getDate()
+
+            // se non c'è la chiave in chace, creo tutto da 0
+            if (data === null) {
+                await this.setCacheDataFromApi()
+                data = JSON.parse(localStorage.getItem(this.key));
+            } else {
+                // se c'è la chiave, verifico che i dati salvati siano quelli di oggi, altrimenti cancello tutto e ricreo la cache
+                if (!(today in data)) {
+                    await this.resetCacheDataFromApi();
+                    data = JSON.parse(localStorage.getItem(this.key));
+
+                }
+            }
+            return data[today]
+        }
     }
+
+
 })
 
 const routes = [
     {path: '/', component: Home},
-    {path: '/programmazione', component: Programmazione},
     {path: '/channel/:number', component: ChannelDetail},
-    {path: '/channel2/:number', component: ChannelProgram},
 ]
 
 let filter = function (text, length, clamp) {
