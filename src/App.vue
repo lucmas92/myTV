@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="bg-gray-600 min-h-screen"
        onselectstart="return false;" >
-    <div class="fixed w-full z-20 flex flex-row items-center px-4 py-4 shadow-lg bg-indigo-900 text-white">
+    <div class="hidden fixed w-full z-20 flex flex-row items-center px-4 py-4 shadow-lg bg-indigo-900 text-white">
       <router-link to="/">
         <h1 class="text-md w-24 ml-5 md:w-36 font-bold text-center"><span class="hidden lg:inline">
           Stasera </span>MyTV
@@ -13,7 +13,7 @@
         </router-link>
       </div>
     </div>
-    <channels-list class="z-10 bg-gray-600  fixed pt-14"></channels-list>
+    <channels-list class="z-10 bg-gray-600 fixed pt-0"></channels-list>
     <router-view class="pt-32" :key="$route.fullPath"></router-view>
   </div>
 </template>
