@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-900 min-h-screen"
+  <div id="app" class="bg-gray-800 min-h-screen"
        onselectstart="return false;" >
     <div class="hidden fixed w-full z-20 flex flex-row items-center px-4 py-4 shadow-lg bg-indigo-900 text-white">
       <router-link to="/">
