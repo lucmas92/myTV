@@ -1,2 +1,9 @@
+# netlify.toml
+
+[build]
+  # Directory dove ci sono i file statici (index.html, js, css)
+  publish = "."
+
 [functions]
-  directory = "netlify/functions"
+  # Directory delle funzioni serverless
+  directory = ".netlify/functions"
